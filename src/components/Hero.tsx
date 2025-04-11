@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 import { ArrowDown } from 'lucide-react';
 
@@ -30,7 +29,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-neha-50/30 to-white/80 z-0"></div>
       
       {/* Profile image with parallax effect */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+      <div className="absolute top-20 left-1/2 transform -translate-x-1/2 pointer-events-none z-0"> {/* Adjusted top position to move image slightly down */}
         <div className="relative w-64 h-64 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-white shadow-lg" ref={imageRef}>
           <img 
             src="https://media.licdn.com/dms/image/v2/D5603AQF3J1PuJQgzLA/profile-displayphoto-shrink_800_800/B56ZWxSgS_HQAc-/0/1742436173578?e=1748476800&v=beta&t=WoKlmS4ehMdbLpmxqJC3L0bllBF0p-kdq6dJda4CCMk" 
@@ -42,7 +41,7 @@ const Hero = () => {
       </div>
       
       {/* Content */}
-      <div className="container mx-auto px-4 pt-40 pb-20 md:pt-48 md:pb-32 relative z-20" ref={textRef}>
+      <div className="container mx-auto px-4 pt-40 pb-20 md:pt-48 md:pb-32 relative z-10" ref={textRef}> {/* Adjusted z-index to ensure content is above image */}
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-block mb-4 px-3 py-1 bg-neha-100 text-neha-800 rounded-full text-sm font-medium animate-fade-in">
             Strategic Marketing Specialist

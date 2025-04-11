@@ -33,6 +33,7 @@ const Skills = () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-fade-in');
+          entry.target.classList.remove('opacity-0'); // Ensure visibility
           
           // Animate skill progress bars when visible
           const progressEl = entry.target.querySelector('.skill-progress') as HTMLElement;
@@ -48,7 +49,11 @@ const Skills = () => {
     }, observerOptions);
 
     skillsRef.current.forEach((item) => {
-      if (item) observer.observe(item);
+      if (item) {
+        observer.observe(item);
+        // Fallback to ensure visibility if observer fails
+        item.classList.add('opacity-100');
+      }
     });
 
     return () => {

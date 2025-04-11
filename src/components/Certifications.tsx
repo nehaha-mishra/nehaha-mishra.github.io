@@ -47,13 +47,18 @@ const Certifications = () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-scale-in');
+          entry.target.classList.remove('opacity-0'); // Ensure visibility
           observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
     certRefs.current.forEach((item) => {
-      if (item) observer.observe(item);
+      if (item) {
+        observer.observe(item);
+        // Fallback to ensure visibility if observer fails
+        item.classList.add('opacity-100');
+      }
     });
 
     return () => {

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
@@ -70,11 +69,11 @@ const Navbar = () => {
                 About
               </a>
               <a 
-                href="#experience" 
+                href="#projects" 
                 className="text-lg font-medium text-foreground hover:text-neha-700 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Experience
+                Projects
               </a>
               <a 
                 href="#skills" 
@@ -84,11 +83,11 @@ const Navbar = () => {
                 Skills
               </a>
               <a 
-                href="#certifications" 
+                href="#resume" 
                 className="text-lg font-medium text-foreground hover:text-neha-700 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Certifications
+                Resume
               </a>
               <a 
                 href="#contact" 
