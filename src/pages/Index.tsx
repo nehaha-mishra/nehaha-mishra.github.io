@@ -6,6 +6,7 @@ import Timeline from '@/components/Timeline';
 import Skills from '@/components/Skills';
 import Certifications from '@/components/Certifications';
 import { Contact, ResumeSection } from '@/components/Contact';
+import PowerPointViewer from '@/components/PowerPointViewer';
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -103,7 +104,15 @@ const Index = () => {
             </div>
           </div>
         </section>
-        
+
+        <section id="presentations" className="section-padding">
+          <PowerPointViewer
+            title="News Reports & Media Analysis"
+            description="A comprehensive analysis of news reporting trends, media coverage patterns, and strategic insights into current media landscape. This presentation showcases my expertise in media analysis and strategic communication."
+            googleSlidesId="1-HTYbwmKgWoe98SNpllxgPh2kh4UptyE"
+          />
+        </section>
+
         <Timeline />
         <Skills />
         <Certifications />
