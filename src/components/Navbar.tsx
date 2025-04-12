@@ -39,7 +39,7 @@ const Navbar = () => {
 
   return (
     <motion.nav 
-      className="fixed top-0 left-0 right-0 z-50"
+      className="fixed top-0 left-0 right-0 z-50 h-16 sm:h-20"
       style={{
         backgroundColor: `rgba(255, 255, 255, ${navBackgroundOpacity.get()})`,
         boxShadow: `0 1px 3px rgba(0, 0, 0, ${navShadowOpacity.get()})`,

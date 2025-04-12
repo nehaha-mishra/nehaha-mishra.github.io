@@ -36,7 +36,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-between overflow-hidden px-4 py-8">
+    <div className="relative min-h-screen flex flex-col items-center justify-between overflow-hidden px-4 pt-24 sm:pt-28 pb-8">
       {/* Animated background gradient */}
       <motion.div 
         className="absolute inset-0 bg-gradient-to-br from-neha-50/30 via-white/80 to-neha-100/30 z-0"
