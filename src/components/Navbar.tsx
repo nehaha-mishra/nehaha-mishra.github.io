@@ -1,131 +1,179 @@
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { scrollY } = useScroll();
+
+  // Enhanced scroll-based animations
+  const navImageScale = useTransform(scrollY, [0, 200], [0.125, 1]);
+  const navBackgroundOpacity = useTransform(scrollY, [0, 100], [0, 0.9]);
+  const navShadowOpacity = useTransform(scrollY, [0, 100], [0, 0.1]);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 100);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  
-  // Close mobile menu when clicking a link
-  const closeMobileMenu = () => setIsMenuOpen(false);
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
-  // Prevent scrolling when mobile menu is open
-  useEffect(() => {
-    if (isMenuOpen) {
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+    if (!isMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
     }
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [isMenuOpen]);
+  };
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/90 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-5'
-      }`}
+    <motion.nav 
+      className="fixed top-0 left-0 right-0 z-50"
+      style={{
+        backgroundColor: `rgba(255, 255, 255, ${navBackgroundOpacity.get()})`,
+        boxShadow: `0 1px 3px rgba(0, 0, 0, ${navShadowOpacity.get()})`,
+      }}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <nav className="flex items-center justify-between">
-          <a href="#" className="text-2xl font-display font-extrabold text-foreground tracking-wide">
-            Neha Mishra
-          </a>
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16 sm:h-20">
+          {/* Logo and Name */}
+          <motion.div 
+            className="flex items-center gap-3 cursor-pointer group"
+            initial={{ opacity: 0 }}
+            animate={{ 
+              opacity: isScrolled ? 1 : 0,
+            }}
+            transition={{ 
+              duration: 0.5,
+              ease: "easeOut"
+            }}
+            onClick={scrollToTop}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <motion.div 
+              className="w-8 h-8 rounded-full overflow-hidden border-2 border-white shadow-sm relative"
+              style={{
+                scale: navImageScale,
+              }}
+              whileHover={{ 
+                scale: 1.1,
+                transition: { duration: 0.2 }
+              }}
+            >
+              <img 
+                src="https://media.licdn.com/dms/image/v2/D5603AQF3J1PuJQgzLA/profile-displayphoto-shrink_800_800/B56ZWxSgS_HQAc-/0/1742436173578?e=1748476800&v=beta&t=WoKlmS4ehMdbLpmxqJC3L0bllBF0p-kdq6dJda4CCMk" 
+                alt="Neha Mishra" 
+                className="w-full h-full object-cover"
+              />
+              <motion.div 
+                className="absolute inset-0 bg-neha-600/20 rounded-full"
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.2 }}
+              />
+            </motion.div>
+            <motion.span 
+              className="text-neha-700 font-medium relative"
+              initial={{ opacity: 0 }}
+              animate={{ 
+                opacity: isScrolled ? 1 : 0,
+              }}
+              transition={{ 
+                duration: 0.5,
+                delay: 0.2,
+                ease: "easeOut"
+              }}
+            >
+              Neha Mishra
+              <motion.span 
+                className="absolute bottom-0 left-0 w-full h-0.5 bg-neha-600"
+                initial={{ scaleX: 0 }}
+                whileHover={{ scaleX: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+            </motion.span>
+          </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#about" className="text-sm font-medium text-foreground hover:text-neha-700 transition-colors">
-              About
-            </a>
-            <a href="#experience" className="text-sm font-medium text-foreground hover:text-neha-700 transition-colors">
-              Experience
-            </a>
-            <a href="#skills" className="text-sm font-medium text-foreground hover:text-neha-700 transition-colors">
-              Skills
-            </a>
-            <a href="#certifications" className="text-sm font-medium text-foreground hover:text-neha-700 transition-colors">
-              Certifications
-            </a>
-            <a href="#resume" className="text-sm font-medium text-foreground hover:text-neha-700 transition-colors">
-              Resume
-            </a>
-            <a href="#contact" className="text-sm font-medium text-white bg-neha-600 hover:bg-neha-700 px-5 py-2 rounded-full shadow-md transition-all">
-              Contact
-            </a>
+            {['About', 'Experience', 'Skills', 'Certifications', 'Resume', 'Contact'].map((item) => (
+              <motion.a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-foreground hover:text-neha-600 transition-colors font-medium relative group"
+                whileHover={{ y: -2 }}
+                whileTap={{ y: 0 }}
+              >
+                {item}
+                <motion.span 
+                  className="absolute bottom-0 left-0 w-full h-0.5 bg-neha-600"
+                  initial={{ scaleX: 0 }}
+                  whileHover={{ scaleX: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.a>
+            ))}
           </div>
 
           {/* Mobile Menu Button */}
-          <button 
-            className="md:hidden text-foreground focus:outline-none hover:text-neha-700 transition-colors"
+          <motion.button 
+            className="md:hidden p-2 text-foreground hover:text-neha-600 transition-colors"
             onClick={toggleMenu}
-            aria-label="Toggle menu"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
           >
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-        </nav>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden glass fixed inset-0 top-16 p-4 bg-white/90 backdrop-blur-md shadow-lg z-50 overflow-y-auto">
-            <div className="flex flex-col space-y-6 pt-8 items-center">
-              <a 
-                href="#about" 
-                className="text-lg font-medium text-foreground hover:text-neha-700 transition-colors"
-                onClick={closeMobileMenu}
-              >
-                About
-              </a>
-              <a 
-                href="#experience" 
-                className="text-lg font-medium text-foreground hover:text-neha-700 transition-colors"
-                onClick={closeMobileMenu}
-              >
-                Experience
-              </a>
-              <a 
-                href="#skills" 
-                className="text-lg font-medium text-foreground hover:text-neha-700 transition-colors"
-                onClick={closeMobileMenu}
-              >
-                Skills
-              </a>
-              <a 
-                href="#certifications" 
-                className="text-lg font-medium text-foreground hover:text-neha-700 transition-colors"
-                onClick={closeMobileMenu}
-              >
-                Certifications
-              </a>
-              <a 
-                href="#resume" 
-                className="text-lg font-medium text-foreground hover:text-neha-700 transition-colors"
-                onClick={closeMobileMenu}
-              >
-                Resume
-              </a>
-              <a 
-                href="#contact" 
-                className="text-lg font-medium text-white bg-neha-600 hover:bg-neha-700 px-6 py-3 rounded-full shadow-md transition-all w-full max-w-xs text-center mt-4"
-                onClick={closeMobileMenu}
-              >
-                Contact
-              </a>
-            </div>
-          </div>
-        )}
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </motion.button>
+        </div>
       </div>
-    </header>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div 
+            className="md:hidden bg-white/95 backdrop-blur-md fixed inset-0 z-50"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="container mx-auto px-4 py-8 flex flex-col space-y-6">
+              {['About', 'Experience', 'Skills', 'Certifications', 'Resume', 'Contact'].map((item, index) => (
+                <motion.a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className="text-foreground hover:text-neha-600 transition-colors font-medium py-2 text-lg"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  onClick={() => {
+                    toggleMenu();
+                    document.getElementById(item.toLowerCase())?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                >
+                  {item}
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 };
 

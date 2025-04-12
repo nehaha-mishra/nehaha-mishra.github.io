@@ -1,38 +1,87 @@
 import { useState } from 'react';
-import { Mail, Send, Linkedin } from 'lucide-react';
+import { Mail, Send, Linkedin, Download, FileText, ArrowUpRight } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { motion } from 'framer-motion';
 
 const ResumeSection = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <section id="resume" className="py-12 sm:py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground mb-3 sm:mb-4">My Resume</h2>
-          <p className="text-sm sm:text-base text-muted-foreground mb-5 sm:mb-6">View or download my resume to learn more about my professional journey and skills.</p>
+          <motion.h2 
+            className="text-2xl sm:text-3xl font-display font-bold text-foreground mb-3 sm:mb-4"
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            My Resume
+          </motion.h2>
+          <motion.p 
+            className="text-sm sm:text-base text-muted-foreground mb-5 sm:mb-6"
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            View or download my resume to learn more about my professional journey and skills.
+          </motion.p>
+          
           <div className="flex flex-col items-center gap-4 sm:gap-6">
-            <div className="max-w-5xl w-full mx-auto glass rounded-xl sm:rounded-2xl overflow-hidden shadow-lg h-[40vh] sm:h-[50vh] md:h-[60vh]"> 
-              <iframe 
-                src="/Neha's Resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=fitH"
-                style={{ 
-                  overflow: 'hidden',
-                  msOverflowStyle: 'none', // IE and Edge
-                  scrollbarWidth: 'none'    // Firefox
-                }}
-                className="w-full h-full scrollbar-hide" 
-                title="Resume Preview"
-                frameBorder="0"
-              ></iframe>
+            <div className="relative w-full max-w-5xl mx-auto">
+              <div className="glass rounded-xl sm:rounded-2xl overflow-hidden shadow-lg h-[40vh] sm:h-[50vh] md:h-[60vh] relative group">
+                {/* Loading overlay */}
+                {isLoading && (
+                  <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-10">
+                    <div className="flex flex-col items-center gap-3">
+                      <div className="w-8 h-8 border-4 border-neha-200 border-t-neha-600 rounded-full animate-spin"></div>
+                      <p className="text-sm text-muted-foreground">Loading resume...</p>
+                    </div>
+                  </div>
+                )}
+                
+                {/* PDF Viewer */}
+                <iframe 
+                  src="/Neha's Resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=fitH"
+                  style={{ 
+                    overflow: 'hidden',
+                    msOverflowStyle: 'none',
+                    scrollbarWidth: 'none'
+                  }}
+                  className="w-full h-full scrollbar-hide" 
+                  title="Resume Preview"
+                  frameBorder="0"
+                  onLoad={() => setIsLoading(false)}
+                />
+                
+                {/* Controls overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-white/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="flex justify-center gap-4">
+                    <a 
+                      href="/Neha's Resume.pdf" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 bg-white text-foreground rounded-lg hover:bg-neha-50 transition-colors shadow-sm flex items-center gap-2 text-sm"
+                    >
+                      <ArrowUpRight size={16} />
+                      Open in New Tab
+                    </a>
+                    <a 
+                      href="/Neha's Resume.pdf" 
+                      download
+                      className="px-4 py-2 bg-neha-600 text-white rounded-lg hover:bg-neha-700 transition-colors shadow-sm flex items-center gap-2 text-sm"
+                    >
+                      <Download size={16} />
+                      Download
+                    </a>
+                  </div>
+                </div>
+              </div>
+              
+              
             </div>
-            <a 
-              href="/Neha's Resume.pdf" 
-              download
-              className="px-5 sm:px-6 py-2.5 sm:py-3 bg-neha-600 text-white font-medium rounded-lg hover:bg-neha-700 transition-colors shadow-md flex items-center gap-2 text-sm sm:text-base"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-4 h-4 sm:w-5 sm:h-5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l7.5 7.5m0 0l7.5-7.5m-7.5 7.5V3" />
-              </svg>
-              Download Resume
-            </a>
           </div>
         </div>
       </div>

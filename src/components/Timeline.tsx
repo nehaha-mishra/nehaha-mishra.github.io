@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 
 interface TimelineItem {
   id: string;
@@ -45,66 +46,50 @@ const timelineData: TimelineItem[] = [
 ];
 
 const Timeline = () => {
-  const timelineItemsRef = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.2,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fade-in');
-          entry.target.classList.remove('opacity-0'); // Ensure visibility
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    timelineItemsRef.current.forEach((item) => {
-      if (item) {
-        observer.observe(item);
-        // Fallback to ensure visibility if observer fails
-        item.classList.add('opacity-100');
-      }
-    });
-
-    return () => {
-      timelineItemsRef.current.forEach((item) => {
-        if (item) observer.unobserve(item);
-      });
-    };
-  }, []);
-
   return (
     <section id="experience" className="section-padding bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="section-title text-center">Professional Journey</h2>
-        <p className="section-subtitle text-center">
+        <motion.h2 
+          className="section-title text-center mb-4"
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          Professional Journey
+        </motion.h2>
+        <motion.p 
+          className="section-subtitle text-center mb-16"
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
           A timeline of my professional experience and educational background
-        </p>
+        </motion.p>
 
-        <div className="max-w-4xl mx-auto mt-16 relative">
+        <div className="max-w-4xl mx-auto relative">
           {/* Timeline line */}
-          <div className="timeline-line"></div>
+          <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-neha-200 to-neha-400 rounded-full"></div>
 
           {/* Timeline items */}
-          <div className="space-y-12 ml-6">
+          <div className="space-y-12 ml-8">
             {timelineData.map((item, index) => (
-              <div 
+              <motion.div 
                 key={item.id}
-                ref={el => timelineItemsRef.current[index] = el}
-                className="relative opacity-0"
+                initial={{ x: -20, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="relative"
               >
-                <div className="timeline-dot"></div>
-                <div 
-                  className={`glass rounded-xl p-6 ml-4 sm:ml-8 transition-transform duration-300 hover:shadow-md hover:-translate-y-1`}
+                <div className="absolute -left-10 top-4 w-4 h-4 rounded-full bg-neha-400 border-4 border-white shadow-lg"></div>
+                <motion.div 
+                  className="glass rounded-xl p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+                  whileHover={{ scale: 1.02 }}
                 >
                   <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full overflow-hidden bg-white p-1 shadow-sm">
+                    <div className="w-12 h-12 rounded-full overflow-hidden bg-white p-1 shadow-sm ring-2 ring-neha-200">
                       <img 
                         src={item.logo} 
                         alt={item.company} 
@@ -113,7 +98,7 @@ const Timeline = () => {
                       />
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold">{item.role}</h3>
+                      <h3 className="text-xl font-semibold text-foreground">{item.role}</h3>
                       <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-sm">
                         <span className="font-medium text-neha-700">{item.company}</span>
                         <span className="hidden sm:inline text-muted-foreground">•</span>
@@ -121,9 +106,9 @@ const Timeline = () => {
                       </div>
                     </div>
                   </div>
-                  <p className="text-muted-foreground">{item.description}</p>
-                </div>
-              </div>
+                  <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+                </motion.div>
+              </motion.div>
             ))}
           </div>
         </div>
