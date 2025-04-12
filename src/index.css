@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
@@ -115,6 +114,16 @@ html {
 
 .timeline-line {
   @apply absolute top-0 bottom-0 left-0 w-0.5 bg-neha-200 z-0;
+}
+
+/* Hide scrollbars across all browsers */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
 }
 
 /* Skill bar animation */

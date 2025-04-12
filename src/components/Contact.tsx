@@ -1,7 +1,44 @@
-
 import { useState } from 'react';
 import { Mail, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+
+const ResumeSection = () => {
+  return (
+    <section id="resume" className="section-padding bg-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-display font-bold text-foreground mb-4">My Resume</h2>
+          <p className="text-muted-foreground mb-6">View or download my resume to learn more about my professional journey and skills.</p>
+          <div className="flex flex-col items-center gap-6">
+            <div className="max-w-5xl w-full mx-auto glass rounded-2xl overflow-hidden shadow-lg h-[60vh]"> 
+              <iframe 
+                src="/Neha's Resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=fitH"
+                style={{ 
+                  overflow: 'hidden',
+                  msOverflowStyle: 'none', // IE and Edge
+                  scrollbarWidth: 'none'    // Firefox
+                }}
+                className="w-full h-full scrollbar-hide" 
+                title="Resume Preview"
+                frameBorder="0"
+              ></iframe>
+            </div>
+            <a 
+              href="/Neha's Resume.pdf" 
+              download
+              className="px-6 py-3 bg-neha-600 text-white font-medium rounded-lg hover:bg-neha-700 transition-colors shadow-md flex items-center gap-2"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-5 h-5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l7.5 7.5m0 0l7.5-7.5m-7.5 7.5V3" />
+              </svg>
+              Download Resume
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const Contact = () => {
   const { toast } = useToast();
@@ -55,7 +92,12 @@ const Contact = () => {
                     </div>
                     <div>
                       <p className="text-sm text-neha-200">Email</p>
-                      <p className="font-medium">neha.mishra@example.com</p>
+                      <a 
+                        href="mailto:nehamishra89818@gmail.com" 
+                        className="font-medium text-white hover:text-neha-300 transition-colors contact-link"
+                      >
+                        nehamishra89818@gmail.com
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -154,4 +196,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export { ResumeSection, Contact };
