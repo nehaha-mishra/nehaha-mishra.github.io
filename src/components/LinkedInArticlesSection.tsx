@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 // Mock data for demonstration. Replace this with real API fetching logic as needed.
 const myArticles = [
@@ -29,19 +31,50 @@ const LinkedInArticlesSection: React.FC = () => {
   const [articles, setArticles] = useState(myArticles);
 
   return (
-    <section id="articles" className="section-padding bg-gray-50 dark:bg-zinc-900">
+    <section id="articles" className="section-padding bg-gradient-to-br from-neha-50/30 via-white to-neha-50/20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          <h2 className="section-title text-center mb-12 text-2xl font-bold">LinkedIn Articles</h2>
-          <div className="space-y-8">
-            {articles.map((article) => (
-              <div key={article.id} className="rounded-lg border p-6 shadow-sm bg-white dark:bg-zinc-800">
-                <a href={article.url} target="_blank" rel="noopener noreferrer" className="text-xl font-semibold text-blue-700 hover:underline">
-                  {article.title}
+          <motion.h2 
+            className="section-title text-center mb-4"
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            LinkedIn Articles
+          </motion.h2>
+          <motion.p
+            className="text-lg text-muted-foreground text-center mb-12"
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            Insights and perspectives on marketing, content strategy, and professional growth
+          </motion.p>
+          <div className="space-y-6">
+            {articles.map((article, index) => (
+              <motion.div 
+                key={article.id} 
+                className="glass rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-neha-100/50 group transform hover:-translate-y-1"
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <a href={article.url} target="_blank" rel="noopener noreferrer" className="block">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1">
+                      <h3 className="text-xl font-semibold text-neha-700 group-hover:text-neha-800 transition-colors mb-2 flex items-center gap-2">
+                        {article.title}
+                        <ArrowUpRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </h3>
+                      <p className="mt-2 text-muted-foreground leading-relaxed">{article.summary}</p>
+                      <div className="mt-3 text-sm text-neha-600 font-medium">Published: {new Date(article.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+                    </div>
+                  </div>
                 </a>
-                <p className="mt-2 text-gray-700 dark:text-gray-300">{article.summary}</p>
-                <div className="mt-2 text-sm text-gray-500">Published: {article.publishedAt}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
