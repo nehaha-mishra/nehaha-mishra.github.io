@@ -24,7 +24,7 @@ const Hero = () => {
     <div className="relative min-h-screen flex flex-col items-center justify-between overflow-hidden px-2 sm:px-4 pt-24 sm:pt-28 pb-8">
       {/* Animated background gradient */}
       <motion.div 
-        className="absolute inset-0 bg-gradient-to-br from-neha-50/30 via-white/80 to-neha-100/30 z-0"
+        className="absolute inset-0 bg-gradient-to-br from-neha-100/50 via-white to-neha-50/40 z-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -32,21 +32,26 @@ const Hero = () => {
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden z-0">
         <motion.div 
-          className="absolute -top-20 -left-20 w-40 h-40 sm:w-64 sm:h-64 bg-neha-200/20 rounded-full blur-3xl"
-          animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.4, 0.3] }}
+          className="absolute -top-20 -left-20 w-48 h-48 sm:w-72 sm:h-72 bg-gradient-to-br from-neha-300/30 to-neha-400/20 rounded-full blur-3xl"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div 
-          className="absolute -bottom-20 -right-20 w-40 h-40 sm:w-64 sm:h-64 bg-neha-300/20 rounded-full blur-3xl"
-          animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.4, 0.3] }}
+          className="absolute -bottom-20 -right-20 w-48 h-48 sm:w-72 sm:h-72 bg-gradient-to-br from-neha-400/30 to-neha-500/20 rounded-full blur-3xl"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        />
+        <motion.div 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 sm:w-96 sm:h-96 bg-gradient-to-br from-neha-200/20 to-neha-300/10 rounded-full blur-3xl"
+          animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.3, 0.2] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 4 }}
         />
       </div>
       {/* Main content container */}
       <div className="flex-1 flex flex-col items-center justify-center w-full">
         {/* Profile image with shared layoutId */}
         <motion.div 
-          className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 mb-6 sm:mb-10 shadow-lg rounded-full overflow-hidden border-4 border-white shadow-lg ring-4 ring-neha-200/50"
+          className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 mb-6 sm:mb-10 rounded-full overflow-hidden border-4 border-white shadow-2xl ring-4 ring-neha-300/60"
           layoutId="profile-image"
           style={{ scale: useTransform(heroDockProgress, [0, 1], [1, 0.2]), opacity: useTransform(heroDockProgress, [0, 1], [1, 0]) }}
         >
@@ -62,7 +67,7 @@ const Hero = () => {
         <div className="container mx-auto px-0 sm:px-2 relative z-10" ref={textRef}>
           <div className="max-w-2xl sm:max-w-4xl mx-auto text-center">
             <motion.div 
-              className="inline-block mb-3 sm:mb-4 px-4 py-1.5 bg-neha-100/80 text-neha-800 rounded-full text-xs sm:text-sm font-medium shadow-sm backdrop-blur-sm"
+              className="inline-block mb-3 sm:mb-4 px-4 py-2 bg-gradient-to-r from-neha-100 to-neha-50 text-neha-800 rounded-full text-xs sm:text-sm font-medium shadow-md backdrop-blur-sm border border-neha-200/50"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8 }}
@@ -90,8 +95,12 @@ const Hero = () => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.25 }}
             >
-              <a href="#contact" className="inline-flex items-center px-6 py-3 rounded-lg bg-neha-600 text-white font-semibold shadow hover:bg-neha-700 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-neha-500">Contact Me</a>
-              <a href="#resume" className="inline-flex items-center px-6 py-3 rounded-lg bg-white border border-neha-600 text-neha-700 font-semibold shadow hover:bg-neha-50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-neha-500">My Resume</a>
+              <a href="#contact" className="inline-flex items-center px-8 py-3.5 rounded-xl bg-gradient-to-r from-neha-600 to-neha-700 text-white font-semibold shadow-lg hover:shadow-xl hover:from-neha-700 hover:to-neha-800 transition-all duration-300 transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-neha-500 focus-visible:ring-offset-2">
+                Contact Me
+              </a>
+              <a href="#resume" className="inline-flex items-center px-8 py-3.5 rounded-xl bg-white border-2 border-neha-600 text-neha-700 font-semibold shadow-md hover:shadow-lg hover:bg-neha-50 transition-all duration-300 transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-neha-500 focus-visible:ring-offset-2">
+                My Resume
+              </a>
             </motion.div>
             <motion.div className="flex justify-center mt-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}>
               <a href="#about" aria-label="Scroll to About">

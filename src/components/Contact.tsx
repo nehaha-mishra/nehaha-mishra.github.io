@@ -31,7 +31,7 @@ const ResumeSection = () => {
           
           <div className="flex flex-col items-center gap-4 sm:gap-6">
             <div className="relative w-full max-w-5xl mx-auto">
-              <div className="glass rounded-xl sm:rounded-2xl overflow-hidden shadow-lg h-[40vh] sm:h-[50vh] md:h-[60vh] relative group">
+              <div className="glass rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl h-[40vh] sm:h-[50vh] md:h-[60vh] relative group border border-neha-100/50">
                 {/* Loading overlay */}
                 {isLoading && (
                   <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-10">
@@ -46,7 +46,7 @@ const ResumeSection = () => {
                 <button
                   type="button"
                   aria-label="Maximize or Open PDF"
-                  className="absolute top-4 right-4 z-20 bg-white/80 hover:bg-neha-100 text-neha-700 dark:bg-zinc-800 dark:hover:bg-zinc-700 dark:text-neha-100 rounded-full p-2 shadow transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-neha-500"
+                  className="absolute top-4 right-4 z-20 bg-white/90 hover:bg-neha-100 text-neha-700 dark:bg-zinc-800 dark:hover:bg-zinc-700 dark:text-neha-100 rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-neha-500 transform hover:-translate-y-0.5"
                   onClick={() => {
                     const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || /Mobi|Android/i.test(navigator.userAgent));
                     const pdfUrl = "/Neha's Resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=fitH";
@@ -151,24 +151,24 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-12 sm:py-16 md:py-24 bg-neha-50/30">
+    <section id="contact" className="py-12 sm:py-16 md:py-24 bg-gradient-to-br from-neha-50/40 via-white to-neha-100/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto glass rounded-xl sm:rounded-2xl overflow-hidden shadow-lg">
+        <div className="max-w-5xl mx-auto glass rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-neha-100/50">
           <div className="grid grid-cols-1 md:grid-cols-2">
             {/* Contact Info */}
-            <div className="bg-neha-700 text-white p-6 sm:p-8 md:p-12">
+            <div className="bg-gradient-to-br from-neha-700 to-neha-800 text-white p-6 sm:p-8 md:p-12">
               <div className="h-full flex flex-col">
                 <div>
                   <h2 className="text-2xl sm:text-3xl font-display font-bold mb-4 sm:mb-6">Get in Touch</h2>
-                  <p className="mb-6 sm:mb-8 text-neha-100 text-sm sm:text-base">
+                  <p className="mb-6 sm:mb-8 text-neha-100 text-sm sm:text-base leading-relaxed">
                     I'm always open to discussing new projects, opportunities, and partnerships. Feel free to reach out!
                   </p>
                 </div>
                 
                 <div className="space-y-4 sm:space-y-6 mb-6 sm:mb-8">
                   <div className="flex items-center space-x-3 sm:space-x-4">
-                    <div className="bg-neha-600 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center">
-                      <Mail size={16} className="sm:size-18" />
+                    <div className="bg-neha-600 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-md ring-2 ring-neha-500/50">
+                      <Mail size={20} className="sm:w-6 sm:h-6" />
                     </div>
                     <div>
                       <p className="text-xs sm:text-sm text-neha-200">Email</p>
@@ -182,8 +182,8 @@ const Contact = () => {
                   </div>
                   
                   <div className="flex items-center space-x-3 sm:space-x-4">
-                    <div className="bg-neha-600 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center">
-                      <Linkedin size={16} className="sm:size-18" />
+                    <div className="bg-neha-600 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-md ring-2 ring-neha-500/50">
+                      <Linkedin size={20} className="sm:w-6 sm:h-6" />
                     </div>
                     <div>
                       <p className="text-xs sm:text-sm text-neha-200">LinkedIn</p>
@@ -223,7 +223,7 @@ const Contact = () => {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-neha-500 focus:border-transparent transition-colors text-sm sm:text-base" 
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border-2 border-neha-200 focus:outline-none focus:ring-2 focus:ring-neha-500 focus:border-neha-400 transition-all text-sm sm:text-base bg-white hover:border-neha-300" 
                     placeholder="Your name"
                   />
                 </div>
@@ -239,7 +239,7 @@ const Contact = () => {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-neha-500 focus:border-transparent transition-colors text-sm sm:text-base" 
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border-2 border-neha-200 focus:outline-none focus:ring-2 focus:ring-neha-500 focus:border-neha-400 transition-all text-sm sm:text-base bg-white hover:border-neha-300" 
                     placeholder="your.email@example.com"
                   />
                 </div>
@@ -255,7 +255,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     rows={3}
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-neha-500 focus:border-transparent transition-colors text-sm sm:text-base" 
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border-2 border-neha-200 focus:outline-none focus:ring-2 focus:ring-neha-500 focus:border-neha-400 transition-all text-sm sm:text-base bg-white hover:border-neha-300 resize-none" 
                     placeholder="How can I help you?"
                   ></textarea>
                 </div>
@@ -263,15 +263,15 @@ const Contact = () => {
                 <button 
                   type="submit" 
                   disabled={isSubmitting}
-                  className={`w-full flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg transition-colors text-sm sm:text-base ${
+                  className={`w-full flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl transition-all duration-300 text-sm sm:text-base font-semibold shadow-lg ${
                     isSubmitting 
                       ? 'bg-neha-300 cursor-not-allowed' 
-                      : 'bg-neha-600 hover:bg-neha-700 text-white'
+                      : 'bg-gradient-to-r from-neha-600 to-neha-700 hover:from-neha-700 hover:to-neha-800 text-white hover:shadow-xl transform hover:-translate-y-0.5'
                   }`}
                 >
                   {isSubmitting ? (
                     <>
-                      <svg className="animate-spin -ml-1 mr-2 h-3 w-3 sm:h-4 sm:w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" className="inline-block">
+                      <svg className="animate-spin -ml-1 mr-2 h-3 w-3 sm:h-4 sm:w-4 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
