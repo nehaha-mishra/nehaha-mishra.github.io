@@ -83,13 +83,13 @@ const Timeline = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="relative"
               >
-                <div className="absolute -left-10 top-4 w-4 h-4 rounded-full bg-neha-400 border-4 border-white shadow-lg"></div>
+                <div className="absolute -left-10 top-4 w-5 h-5 rounded-full bg-gradient-to-br from-neha-500 to-neha-600 border-4 border-white shadow-lg ring-2 ring-neha-200/50"></div>
                 <motion.div 
-                  className="glass rounded-xl p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+                  className="glass rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border border-neha-100/50"
                   whileHover={{ scale: 1.02 }}
                 >
                   <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full overflow-hidden bg-white p-1 shadow-sm ring-2 ring-neha-200">
+                    <div className="w-14 h-14 rounded-full overflow-hidden bg-white p-1.5 shadow-md ring-2 ring-neha-300/50">
                       <img 
                         src={item.logo} 
                         alt={item.company} 

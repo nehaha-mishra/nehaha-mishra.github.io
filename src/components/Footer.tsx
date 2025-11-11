@@ -9,7 +9,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-white py-8 sm:py-12 border-t border-gray-100">
+    <footer className="bg-gradient-to-br from-white via-neha-50/30 to-white py-8 sm:py-12 border-t border-neha-100 shadow-inner">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-8 md:mb-0 text-center md:text-left">
@@ -55,9 +55,9 @@ const Footer = () => {
           <button 
             onClick={scrollToTop}
             aria-label="Scroll to top"
-            className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-neha-100 text-neha-700 hover:bg-neha-200 transition-colors"
+            className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-neha-100 to-neha-200 text-neha-700 hover:from-neha-200 hover:to-neha-300 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1"
           >
-            <ArrowUp size={16} className="sm:size-20" />
+            <ArrowUp size={20} className="sm:w-6 sm:h-6" />
           </button>
         </div>
       </div>

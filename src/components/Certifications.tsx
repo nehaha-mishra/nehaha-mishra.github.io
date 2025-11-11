@@ -81,15 +81,15 @@ const Certifications = () => {
             <div 
               key={cert.id}
               ref={el => certRefs.current[index] = el}
-              className="glass rounded-xl p-6 text-center opacity-0 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              className="glass rounded-2xl p-6 text-center opacity-0 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neha-100/50"
             >
               <div className="mb-4">
                 {cert.type === "certification" ? (
-                  <div className="w-16 h-16 mx-auto bg-neha-100 rounded-full flex items-center justify-center text-neha-700">
+                  <div className="w-16 h-16 mx-auto bg-gradient-to-br from-neha-100 to-neha-50 rounded-full flex items-center justify-center text-neha-700 shadow-md ring-2 ring-neha-200/50">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
                   </div>
                 ) : (
-                  <div className="w-16 h-16 mx-auto bg-neha-100 rounded-full flex items-center justify-center text-neha-700">
+                  <div className="w-16 h-16 mx-auto bg-gradient-to-br from-neha-100 to-neha-50 rounded-full flex items-center justify-center text-neha-700 shadow-md ring-2 ring-neha-200/50">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path></svg>
                   </div>
                 )}
@@ -103,40 +103,40 @@ const Certifications = () => {
         </div>
 
         <div className="mt-16 max-w-4xl mx-auto">
-          <div className="glass rounded-xl p-8">
-            <h3 className="text-2xl font-semibold mb-6 text-center">Additional Accreditations</h3>
+          <div className="glass rounded-2xl p-8 shadow-xl border border-neha-100/50">
+            <h3 className="text-2xl font-semibold mb-6 text-center bg-gradient-to-r from-neha-700 to-neha-600 bg-clip-text text-transparent">Additional Accreditations</h3>
             <p className="text-muted-foreground text-center mb-8">
               I continuously enhance my skills through professional certifications and industry training programs.
             </p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              <div className="bg-neha-50 p-4 rounded-lg text-center">
-                <h4 className="font-medium">Digital Marketing</h4>
+              <div className="bg-gradient-to-br from-neha-50 to-neha-100/50 p-4 rounded-xl text-center shadow-sm hover:shadow-md transition-all duration-300 border border-neha-100">
+                <h4 className="font-medium text-neha-800">Digital Marketing</h4>
                 <p className="text-sm text-muted-foreground">Certified Specialist</p>
               </div>
               
-              <div className="bg-neha-50 p-4 rounded-lg text-center">
-                <h4 className="font-medium">Social Media Strategy</h4>
+              <div className="bg-gradient-to-br from-neha-50 to-neha-100/50 p-4 rounded-xl text-center shadow-sm hover:shadow-md transition-all duration-300 border border-neha-100">
+                <h4 className="font-medium text-neha-800">Social Media Strategy</h4>
                 <p className="text-sm text-muted-foreground">Advanced Certification</p>
               </div>
               
-              <div className="bg-neha-50 p-4 rounded-lg text-center">
-                <h4 className="font-medium">CRM Implementation</h4>
+              <div className="bg-gradient-to-br from-neha-50 to-neha-100/50 p-4 rounded-xl text-center shadow-sm hover:shadow-md transition-all duration-300 border border-neha-100">
+                <h4 className="font-medium text-neha-800">CRM Implementation</h4>
                 <p className="text-sm text-muted-foreground">Professional Certification</p>
               </div>
               
-              <div className="bg-neha-50 p-4 rounded-lg text-center">
-                <h4 className="font-medium">Sales Management</h4>
+              <div className="bg-gradient-to-br from-neha-50 to-neha-100/50 p-4 rounded-xl text-center shadow-sm hover:shadow-md transition-all duration-300 border border-neha-100">
+                <h4 className="font-medium text-neha-800">Sales Management</h4>
                 <p className="text-sm text-muted-foreground">Leadership Certification</p>
               </div>
               
-              <div className="bg-neha-50 p-4 rounded-lg text-center">
-                <h4 className="font-medium">Customer Experience</h4>
+              <div className="bg-gradient-to-br from-neha-50 to-neha-100/50 p-4 rounded-xl text-center shadow-sm hover:shadow-md transition-all duration-300 border border-neha-100">
+                <h4 className="font-medium text-neha-800">Customer Experience</h4>
                 <p className="text-sm text-muted-foreground">Service Excellence</p>
               </div>
               
-              <div className="bg-neha-50 p-4 rounded-lg text-center">
-                <h4 className="font-medium">Market Analysis</h4>
+              <div className="bg-gradient-to-br from-neha-50 to-neha-100/50 p-4 rounded-xl text-center shadow-sm hover:shadow-md transition-all duration-300 border border-neha-100">
+                <h4 className="font-medium text-neha-800">Market Analysis</h4>
                 <p className="text-sm text-muted-foreground">Research Methodology</p>
               </div>
             </div>

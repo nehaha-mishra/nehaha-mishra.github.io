@@ -65,7 +65,7 @@ const Index = () => {
                 </motion.h2>
                 
                 <motion.div 
-                  className="glass p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  className="glass p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
                   initial={{ y: 20, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true }}
